@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body bgcolor="#7DC1F3">
+<div id="header">
+        <h3 align="right">Пользователь: user</h3>
+        <h5 align="right"><a href="/admin/logout/">Выйти из аккаунта</a></h5>
+        <h1 align="center">Управление движением оъектов<h1>
+        <h3 align="center"><a href = "{% url 'home' %}">назад</a></h3>
+</div>
+
+<table border="1" width="100%">
+    <tr>
+        <td align="center" width="30%">
+		<h4 align="center">Добавить движение<h4>
+            <form method="POST" action="addm/">
+        {% csrf_token %}
+        <table>
+            {{ form }}
+        </table>
+                <br>
+        <input type="submit" value="Добавить движение">
+    </form>
+        </td>
+        <td align="center" rowspan="2">
+            <form method="POST" action="show/">
+        {% csrf_token %}
+        <table border="1" width="100%">
+            <tr align="center" bgcolor="grey">
+                <th>Id</th>
+                <th>Карточка</th>
+                <th>Автор</th>
+                <th>Прием на хранение</th>
+                <th>Списание</th>
+                <th>Выставка</th>
+                <th>Организация</th>
+                <th>Передача на выставку</th>
+                <th>Прием с выставки</th>
+            </tr>
+        {% for i in data_show %}
+            <tr align="center">
+                <td>{{ i.id }}</td>
+                <td> <a href="{% url 'card' %}"> {{ i.card_id }}</td>
+                <td> <a href="{% url 'author' %}"> {{ i.author_id }}</td>
+                <td>{{ i.add_stor }}</td>
+                <td>{{ i.off_stor }}</td>
+                <td> <a href="{% url 'exhibition' %}"> {{ i.exhibition_id }}</td>
+                <td> <a href="{% url 'org' %}"> {{ i.organization_id }}</td>
+                <td>{{ i.trans_ex }}</td>
+                <td>{{ i.return_ex }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+    </form>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="30%">
+		<h4 align="center">Удалить движение<h4>
+            <form method="POST" action="delm/">
+        {% csrf_token %}
+        <label>Введите id</label>
+        <input type= "number" name="delname"><br>
+                <br>
+        <input type= "submit" value="Удалить движение">
+    </form>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
