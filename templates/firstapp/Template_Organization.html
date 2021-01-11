@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body bgcolor="#7DC1F3">
+<div id="header" >
+        <h3 align="right">Пользователь: user</h3>
+        <h5 align="right"><a href="/admin/logout/">Выйти из аккаунта</a></h5>
+        <h1 align="center">Организации<h1>
+        <h3 align="center"><a href = "{% url 'home' %}">назад</a></h3>
+</div>
+
+<table border="1" width="100%">
+    <tr>
+        <td align="center" width="30%">
+		<h4 align="center">Добавить организацию<h4>
+            <form method="POST" action="addo/">
+        {% csrf_token %}
+        <table>
+            {{ form }}
+        </table>
+                <br>
+        <input type="submit" value="Добавить организацию">
+    </form>
+        </td>
+        <td align="center" rowspan="3">
+            <form method="POST" action="show/">
+        {% csrf_token %}
+        <table border="1" width="100%">
+            <tr align="center" bgcolor="grey">
+                <th>Id</th>
+                <th>Название орг.</th>
+                <th>Адрес орг.</th>
+                <th>Телефон орг.</th>
+                <th>Контактная персона</th>
+                <th>Выставка</th>
+            </tr>
+        {% for i in data_show %}
+            <tr align="center">
+                <td>{{ i.id }}</td>
+                <td>{{ i.name }}</td>
+                <td>{{ i.address }}</td>
+                <td>{{ i.phone }}</td>
+                <td>{{ i.person }}</td>
+                <td> <a href="{% url 'exhibition' %}"> {{ i.exhibition_id }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+    </form>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="30%">
+		<h4 align="center">Удалить организацию<h4>
+            <form method="POST" action="delo/">
+        {% csrf_token %}
+        <label>Введите id</label>
+        <input type= "number" name="delname"><br>
+                <br>
+        <input type= "submit" value="Удалить организацию">
+    </form>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="30%">
+		<h4 align="center">Изменить организацию<h4>
+            <form method="POST" action="upo/">
+        {% csrf_token %}
+        <label>Введите id</label>
+        <input type= "number" name="upname"><br>
+        <table>
+            {{ form }}
+        </table>
+                <br>
+        <input type= "submit" value="Изменить организацию">
+    </form>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

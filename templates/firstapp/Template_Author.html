@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Модели в Django</title>
+</head>
+<body class="container"  bgcolor="#7DC1F3">
+    <div id="header" >
+        <h3 align="right">Пользователь: {{ uname }} </h3>
+        <h5 align="right"><a href="/admin/logout/">Выйти из аккаунта</a></h5>
+        <h1 align="center">Авторы<h1>
+        <h3 align="center"><a href = "{% url 'home' %}">назад</a></h3>
+    </div>
+
+<table border="1" width="100%">
+    <tr>
+        <td align="center" width="30%">
+            <h4 align="center">Добавить автора<h4>
+            <form method="POST" action="add/">
+            {% csrf_token %}
+            <table>
+                {{ form }}
+            </table>
+                <br>
+            <input type="submit" value="Добавить автора">
+            </form>
+        </td>
+
+        <td align="center" rowspan="3">
+        <form method="POST" action="show/">
+        {% csrf_token %}
+        <table border="1" width="100%">
+            <tr align="center" bgcolor="grey">
+                <th>Id</th>
+                <th>Имя</th>
+                <th>Дата рождения</th>
+                <th>Страна</th>
+            </tr>
+        {% for i in data_show %}
+            <tr align="center">
+                <td>{{ i.id }}</td>
+                <td>{{ i.name }}</td>
+                <td>{{ i.date_of_birth }}</td>
+                <td>{{ i.country}}</td>
+            </tr>
+        {% endfor %}
+        </table>
+        </form>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="30%">
+            <h4 align="center">Удалить автора<h4>
+        <form method="POST" action="del/">
+        {% csrf_token %}
+        <label>Введите id</label>
+        <input type= "number" name="delname"><br>
+        <br>
+        <input type= "submit" value="Удалить автора">
+        </form>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="30%">
+            <h4 align="center">Изменить автора<h4>
+            <form method="POST" action="up/">
+            {% csrf_token %}
+            <label>Введите id</label>
+            <input type= "number" name="upname"><br>
+            <table>
+                {{ form }}
+            </table>
+            <br>
+            <input type= "submit" value="Изменить автора">
+            </form>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

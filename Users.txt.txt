@@ -1,0 +1,11 @@
+Users:
+user1 - Qwerty333
+
+Fund_managers:
+fund_manager1 - Qwerty333
+
+Director:
+director1 - Qwerty333
+
+Admin:
+admin - admin

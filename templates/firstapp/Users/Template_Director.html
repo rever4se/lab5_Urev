@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Модели в Django</title>
+</head>
+<body class="container" bgcolor="#7DC1F3">
+    <div id="header" >
+        <h3 align="right">Пользователь: user</h3>
+        <h5 align="right"><a href="/admin/logout/">Выйти из аккаунта</a></h5>
+        <h1 align="center">Управление директоратом<h1>
+        <h3 align="center"><a href = "{% url 'users' %}">назад</a></h3>
+    </div>
+
+<table border="1" width="100%">
+    <tr>
+        <td align="center" width="30%">
+		<h4 align="center">Добавить пользователя<h4>
+            <form method="POST" action="add/">
+        {% csrf_token %}
+        <table>
+            {{ form }}
+        </table>
+                <br>
+        <input type="submit" value="Добавить пользователя">
+    </form>
+        </td>
+        <td align="center" rowspan="3">
+            <form method="POST" action="show/">
+        {% csrf_token %}
+        <table border="1" width="100%">
+            <tr align="center" bgcolor="grey">
+                <th>Id</th>
+                <th>Id_пользователя</th>
+                <th>Телефон</th>
+                <th>Должность</th>
+            </tr>
+        {% for i in data_show %}
+            <tr align="center">
+                <td>{{ i.id }}</td>
+                <td> <a href="{% url 'users' %}"> {{ i.users_id }} </td>
+                <td>{{ i.phone }}</td>
+                <td>{{ i.position }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+    </form>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="30%">
+		<h4 align="center">Удалить пользователя<h4>
+            <form method="POST" action="del/">
+        {% csrf_token %}
+        <label>Введите id</label>
+        <input type= "number" name="delname"><br>
+                <br>
+        <input type= "submit" value="Удалить пользователя">
+    </form>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="30%">
+		<h4 align="center">Изменить пользователя<h4>
+            <form method="POST" action="up/">
+        {% csrf_token %}
+        <label>Введите id</label>
+        <input type= "number" name="upname"><br>
+        <table>
+            {{ form }}
+        </table>
+                <br>
+        <input type= "submit" value="Изменить пользователя">
+    </form>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body bgcolor="#7DC1F3">
+<div id="header" >
+        <h3 align="right">Пользователь: user</h3>
+        <h5 align="right"><a href="/admin/logout/">Выйти из аккаунта</a></h5>
+        <h1 align="center">Выставки<h1>
+        <h3 align="center"><a href = "{% url 'home' %}">назад</a></h3>
+</div>
+
+<table border="1" width="100%">
+    <tr>
+        <td align="center" width="30%">
+		<h4 align="center">Добавить выставку<h4>
+            <form method="POST" action="adde/">
+        {% csrf_token %}
+        <table>
+            {{ form }}
+        </table>
+                <br>
+        <input type="submit" value="Добавить выставку">
+    </form>
+        </td>
+        <td align="center" rowspan="3">
+            <form method="POST" action="show/">
+        {% csrf_token %}
+        <table border="1" width="100%">
+            <tr align="center" bgcolor="grey">
+                <th>Id</th>
+                <th>Название выставки</th>
+                <th>Дата начала выставки</th>
+                <th>Дата окончания выставки</th>
+            </tr>
+        {% for i in data_show %}
+            <tr align="center">
+                <td>{{ i.id }}</td>
+                <td>{{ i.name }}</td>
+                <td>{{ i.start_date }}</td>
+                <td>{{ i.finish_date}}</td>
+            </tr>
+        {% endfor %}
+        </table>
+    </form>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="30%">
+		<h4 align="center">Удалить выставку<h4>
+            <form method="POST" action="dele/">
+        {% csrf_token %}
+        <label>Введите id</label>
+        <input type= "number" name="delname"><br>
+                <br>
+        <input type= "submit" value="Удалить выставку">
+    </form>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="30%">
+		<h4 align="center">Изменить выставку<h4>
+            <form method="POST" action="upe/">
+        {% csrf_token %}
+        <label>Введите id</label>
+        <input type= "number" name="upname"><br>
+
+        <table>
+            {{ form }}
+        </table>
+                <br>
+        <input type= "submit" value="Изменить выставку">
+    </form>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

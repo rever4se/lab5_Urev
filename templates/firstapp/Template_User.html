@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Hello Django</title>
+</head>
+<body bgcolor="#7DC1F3">
+    <div id="header" >
+        <h3 align="right">Пользователь: user</h3>
+        <h5 align="right"><a href="/admin/logout/">Выйти из аккаунта</a></h5>
+        <h1 align="center">Управление пользователями<h1>
+        <h3 align="center"><a href = "{% url 'home' %}">Назад</a></h3>
+    </div>
+    <h3 align="center"><a href = "{% url 'user' %}">Пользователи</a></h3>
+    <h3 align="center"><a href = "{% url 'director' %}">Директор</a></h3>
+    <h3 align="center"><a href = "{% url 'manager' %}">Хранители фондов</a></h3>
+</body>
+</html>
