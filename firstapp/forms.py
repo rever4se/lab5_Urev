@@ -1,7 +1,6 @@
 from django import forms
 from .models import Exhibition_db, Author_db, Card_db, Organization, Users
 
-
 class AddData(forms.Form):
     name = forms.CharField(label="Имя")
     date_of_birth = forms.DateField(label="Дата рождения")
@@ -51,5 +50,3 @@ class AddManager(forms.Form):
     phone = forms.CharField(label="Номер телефона")
     position = forms.CharField(label="Должность")
     fund_name = forms.CharField(label="Название фонда")
-
-
